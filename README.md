@@ -7,6 +7,7 @@
 - CDIでは`javax.enterprise.context.SessionScoped`を使う
 - ManagedBeanでは`javax.faces.bean.SessionScoped`を使う
 
+セッションで管理したいやつ(ログイン情報とか)
 ```java
 @ManagedProperty(value="#{javaclass}")
 private Javaclass javaclass = null;
@@ -19,7 +20,7 @@ private Javaclass javaclass = null;
 private Javaclass javaclass = null;
 
 @Named
-@javax.enterprise.context.RequestScoped
+@javax.enterprise.context.SessionScoped
 public class Javaclass
 ```
 
