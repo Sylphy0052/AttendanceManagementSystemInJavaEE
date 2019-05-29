@@ -1,9 +1,14 @@
 package BackingBeans;
 
+import Controller.DBController;
+import DBModel.UserTB;
 import Session.UserInfo;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.NoResultException;
 
 @Named(value="login")
 @RequestScoped
@@ -16,18 +21,45 @@ public class Login {
     @Inject
     private UserInfo userInfo;
     
-    public Login() {}
+    @EJB
+    private DBController udbc;
+    
+    @PostConstruct
+    public void init() {
+        initAuthority();
+        initApproval();
+        initAttendanceType();
+        initUser();
+    }
+    
+    private void initAuthority() {
+        
+    }
+    
+    private void initApproval() {
+        
+    }
+    
+    private void initAttendanceType() {
+        
+    }
+    
+    private void initUser() {
+        
+    }
     
     private boolean checkLogin() {
-        if(name.equals("test") && pass.equals("test")) {
-            return true;
+        try {
+        UserTB user = udbc.getUser(name, pass);
+        this.userInfo.login(user);
+        } catch(NoResultException nre) {
+            return false;
         }
-        return false;
+        return true;
     }
     
     public String login() {
         if(checkLogin()) {
-            this.userInfo.login(name);
             return "attendance_list";
         }
         message = "名前かパスワードが間違ってます.";
@@ -57,6 +89,4 @@ public class Login {
     public void setMessage(String message) {
         this.message = message;
     }
-    
-    
 }

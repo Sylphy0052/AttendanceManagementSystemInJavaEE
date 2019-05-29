@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>勤務表</title>
+        <link rel="stylesheet" type="text/css" href="static/style.css"/>
+    </h:head>
+    <h:body>
+        <header>
+            <ui:insert name="header">
+                <ui:include src="./templates/header.xhtml"/>
+            </ui:insert> 
+        </header>
+        <div>フルネーム</div>
+        <div>
+            <ul>
+                <li>年月</li>
+                <li>印刷用プレビュー</li>
+            </ul>
+        </div>
+        <div>
+            <h:dataTable value="#{attendanceList.viewList}" var="view" border="1">
+                <h:column>
+                    #{view.day}<f:facet name="header">日</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.week}<f:facet name="header">曜日</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.workin}<f:facet name="header">出勤</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.workout}<f:facet name="header">退勤</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.holiday}<f:facet name="header">休暇</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.workinTime}<f:facet name="header">出社時刻</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.workoutTime}<f:facet name="header">退社時刻</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.breakout}<f:facet name="header">休憩</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.working}<f:facet name="header">勤務時間</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.overtime}<f:facet name="header">残業時間</f:facet name="header">
+                </h:column>
+                <h:column>
+                    #{view.holidayTime}<f:facet name="header">休日労働時間</f:facet name="header">
+                </h:column>
+                <h:column>
+                    <h:commandButton value="修正" action="#{attendanceList.toUpdate(view)}"/><f:facet name="header">-</f:facet name="header">
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>

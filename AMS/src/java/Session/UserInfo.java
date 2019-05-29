@@ -1,24 +1,25 @@
 package Session;
 
+import DBModel.UserTB;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 
 @SessionScoped
 public class UserInfo implements Serializable {
-    private String name;
+    private UserTB user;
     private boolean authenticated;
     
-    public void login(String name) {
-        this.name = name;
+    public void login(UserTB user) {
+        this.user = user;
         this.authenticated = true;
     }
     
     public void logout() {
-        this.name = null;
+        this.user = null;
         this.authenticated = false;
     }
 
-    public String getName() {
-        return name;
+    public UserTB getUser() {
+        return user;
     }
 }

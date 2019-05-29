@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <div id="header">
+            <h2>Attendance Management System</h2>
+            <button type="button" href=`login.xhtml`">ログアウト</button> 
+            <h:form>
+                <ul>
+                    <li><h:commandLink action="#{header.toAttendanceList()}">勤務表</h:commandLink></li>
+                    <li><h:commandLink action="#{header.toWorkin()}">出勤</h:commandLink></li>
+                    <li><h:commandLink action="#{header.toWorkout()}">退勤</h:commandLink></li>
+                    <li><h:commandLink action="#{header.toHolidayApplication()}">休日申請</h:commandLink></li>
+                </ul>
+            </h:form>
+        </div>
+    </body>
+</html>
